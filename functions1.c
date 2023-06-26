@@ -112,11 +112,11 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 {
 	int i = BUFF_SIZE - 2;
 	unsigned long int number = va_arg(types, unsigned long int);
-	unsigned long int initnum = num;
+	unsigned long int initnum = number;
 
 	UNUSED(width);
 
-	num = convert_size_unsgnd(number, size);
+	number = convert_size_unsgnd(number, size);
 
 	if (number == 0)
 		buffer[i--] = '0';
