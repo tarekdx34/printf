@@ -1,8 +1,6 @@
 #include "main.h"
 
-
-/************************* PRINT CHAR *************************/
-
+/** PRINT CHAR **/
 /**
  * print_char - Prints a char
  * @types: List a of arguments
@@ -20,8 +18,7 @@ int print_char(va_list types, char buffer[],
 
 	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
-/************************* PRINT A STRING *************************/
-/**
+/** print strng
  * print_string - Prints a string
  * @types: List a of arguments
  * @buffer: Buffer array to handle print
@@ -75,8 +72,7 @@ int print_string(va_list types, char buffer[],
 
 	return (write(1, str, length));
 }
-/************************* PRINT PERCENT SIGN *************************/
-/**
+/**print %
  * print_percent - Prints a percent sign
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
@@ -98,8 +94,7 @@ int print_percent(va_list types, char buffer[],
 	return (write(1, "%%", 1));
 }
 
-/************************* PRINT INT *************************/
-/**
+/*** print integer
  * print_int - Print int
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
@@ -142,8 +137,7 @@ int print_int(va_list types, char buffer[],
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
-/************************* PRINT BINARY *************************/
-/**
+/***print binary
  * print_binary - Prints an unsigned number
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
@@ -167,11 +161,11 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(size);
 
 	n = va_arg(types, unsigned int);
-	m = 2147483648; /* (2 ^ 31) */
-	a[0] = n / m;
+	mn = 2147483648;
+	a[0] = n / mn;
 	for (i = 1; i < 32; i++)
 	{
-		m /= 2;
+		mn /= 2;
 		a[i] = (n / m) % 2;
 	}
 	for (i = 0, sum = 0, count = 0; i < 32; i++)
