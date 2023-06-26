@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * get_width calculates the width
  * @format
@@ -9,20 +8,20 @@
  */
 int get_width(const char *format, int *i, va_list list)
 {
-	int width = 0;
+	int widthh = 0;
 	int currenti;
 
 	for (currenti = *i + 1; format[currenti] != '\0'; currenti++)
 	{
 		if (is_digit(format[currenti]))
 		{
-			width *= 10;
-			width += format[currenti] - '0';
+			widthh *= 10;
+			widthh += format[currenti] - '0';
 		}
 		else if (format[currenti] == '*')
 		{
 			currenti++;
-			width = va_arg(list, int);
+			widthh = va_arg(list, int);
 			break;
 		}
 		else
@@ -31,5 +30,5 @@ int get_width(const char *format, int *i, va_list list)
 
 	*i = currenti - 1;
 
-	return (width);
+	return (widthh);
 }

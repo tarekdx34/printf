@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * get_size
  * @format
@@ -8,8 +7,8 @@
  */
 int get_size(const char *format, int *i) /** int f (const char *, int *i) */
 {
-	int currenti = *i + 1;
 	int size = 0;
+	int currenti = *i + 1;
 
 	if (format[currenti] == 'l')
 		size = S_LONG;
