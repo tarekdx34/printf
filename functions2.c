@@ -45,7 +45,6 @@ int print_pointer(va_list types, char buffer[],
 
 	ind++;
 
-	/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
 	return (write_pointer(buffer, ind, length,
 		width, flags, padd, extra_c, padd_start));
 }
@@ -63,7 +62,7 @@ int print_pointer(va_list types, char buffer[],
 int print_non_printable(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i = 0, offset = 0;
+	int i = 0, ofset = 0;
 	char *strr = va_arg(types, char *);
 
 	UNUSED(flags);
@@ -77,16 +76,16 @@ int print_non_printable(va_list types, char buffer[],
 	while (strr[i] != '\0')
 	{
 		if (is_printable(strr[i]))
-			buffer[i + offset] = strr[i];
+			buffer[i + ofset] = strr[i];
 		else
-			offset += append_hexa_code(strr[i], buffer, i + offset);
+			ofset += append_hexa_code(strr[i], buffer, i + ofset);
 
 		i++;
 	}
 
-	buffer[i + offset] = '\0';
+	buffer[i + ofset] = '\0';
 
-	return (write(1, buffer, i + offset));
+	return (write(1, buffer, i + ofset));
 }
 
 /**reverse**
@@ -111,7 +110,7 @@ int print_reverse(va_list types, char buffer[],
 	UNUSED(width);
 	UNUSED(size);
 
-	str = va_arg(types, char *);
+	strr = va_arg(types, char *);
 
 	if (strr == NULL)
 	{
@@ -133,13 +132,13 @@ int print_reverse(va_list types, char buffer[],
 }
 
 
-/**PRINT A STRING IN ROT13**/
+/**** PRINT A STRING IN ROT13 **/
 /**
- * print_rot13string - Print a string in rot13.
+ * print_rot13string
  * @types
  * @buffer
  * @flags
- * @width
+ * @width: get width
  * @precision
  * @size
  * Return
