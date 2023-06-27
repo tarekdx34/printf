@@ -1,8 +1,8 @@
 #include "main.h"
-/** PRINT CHAR **/
+/*print character **/
 /**
- * print_char - Prints a char
- * @types List a of arguments
+ * print_char - prints a char
+ * @types List arguments
  * @buffer array to handle print
  * @flags
  * @width
@@ -13,13 +13,13 @@
 int print_char(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	char c = va_arg(types, int);
+	char cc = va_arg(types, int);
 
-	return (handle_write_char(c, buffer, flags, width, precision, size));
+	return (handle_write_char(cc, buffer, flags, width, precision, size));
 }
 /** print strng
  * print_string - Prints a string
- * @types List a of arguments
+ * @types List of arguments
  * @buffer array to handle print
  * @flags
  * @width
@@ -30,7 +30,7 @@ int print_char(va_list types, char buffer[],
 int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int length = 0, i;
+	int i, length = 0;
 	char *strr = va_arg(types, char *);
 
 	UNUSED(buffer);
@@ -106,8 +106,8 @@ int print_percent(va_list types, char buffer[],
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i = BUFF_SIZE - 2;
 	int is_negative = 0;
+	int i = BUFF_SIZE - 2;
 	long int n = va_arg(types, long int);
 	unsigned long int numm;
 
@@ -136,15 +136,15 @@ int print_int(va_list types, char buffer[],
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
-/**
+/**print binary
  * print_binary - Prints an unsigned number
- * @types: Lista of arguments
+ * @types: arguments
  * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
+ * @flags active flags
  * @width: get width.
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of char printed.
+ * @precision: Precision
+ * @size: Size 
+ * Return
  */
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -160,7 +160,7 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(size);
 
 	n = va_arg(types, unsigned int);
-	m = 2147483648; /* (2 ^ 31) */
+	m = 2147483648;
 	a[0] = n / m;
 	for (i = 1; i < 32; i++)
 	{
