@@ -1,5 +1,4 @@
 #include "main.h"
-
 /** PRINT CHAR **/
 /**
  * print_char - Prints a char
@@ -109,20 +108,20 @@ int print_int(va_list types, char buffer[],
 {
 	int i = BUFF_SIZE - 2;
 	int is_negative = 0;
-	long int nn = va_arg(types, long int);
+	long int n = va_arg(types, long int);
 	unsigned long int numm;
 
-	nn = convert_size_number(n, size);
+	n = convert_size_number(n, size);
 
-	if (nn == 0)
+	if (n == 0)
 		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
-	numm = (unsigned long int)nn;
+	numm = (unsigned long int)n;
 
-	if (nn < 0)
+	if (n < 0)
 	{
-		numm = (unsigned long int)((-1) * nn);
+		numm = (unsigned long int)((-1) * n);
 		is_negative = 1;
 	}
 
@@ -137,22 +136,21 @@ int print_int(va_list types, char buffer[],
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
-/***print binary***/
-/**
+/***print binary
  * print_binary - Prints an unsigned number
- * @types List arguments
+ * @types List a of arguments
  * @buffer array to handle print
  * @flags
  * @width
  * @precision
- * @size size specifier
+ * @size: size specifier
  * Return number of chars
  */
-int print_binary(va_list types, char buffer[], 
+int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int n, mn, j, sum;
-	unsigned int aa[32];
+	unsigned int n, mn, i, sum;
+	unsigned int a[32];
 	int countt;
 
 	UNUSED(buffer);
@@ -163,21 +161,20 @@ int print_binary(va_list types, char buffer[],
 
 	n = va_arg(types, unsigned int);
 	mn = 2147483648;
-	/* 2 power 31 */
 	a[0] = n / mn;
-	for (j = 1; j < 32; j++)
+	for (i = 1; i < 32; i++)
 	{
 		mn /= 2;
-		a[j] = (n / mn) % 2;
+		a[i] = (n / mn) % 2;
 	}
-	for (j = 0, sum = 0, countt = 0; j < 32; j++)
+	for (i = 0, sum = 0, countt = 0; i < 32; i++)
 	{
-		sum += a[j];
-		if (sum || j == 31)
+		sum += a[i];
+		if (sum || i == 31)
 		{
-			char y = '0' + a[j];
+			char z = '0' + a[i];
 
-			write(1, &y, 1);
+			write(1, &z, 1);
 			countt++;
 		}
 	}
